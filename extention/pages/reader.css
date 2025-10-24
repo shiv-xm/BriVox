@@ -1,0 +1,200 @@
+:root {
+    --bg: rgb(239, 231, 231);
+    --fg: rgb(32, 29, 29);
+    --muted: #4d5b78;
+    --surface: rgb(249, 244, 244);
+    --accent: #2563eb;
+    --ok: #16a34a;
+    --warn: #d97706;
+    --err: #dc2626;
+    --border: rgba(0,0,0,0.12);
+    --border2: rgba(0,0,0,0.08);
+    --pg-text: rgb(32, 29, 29);
+    --pg-muted: #4d5b78;
+    --pg-bg: rgb(239, 231, 231);
+    --pg-surface: rgb(249, 244, 244);
+    --pg-border: rgba(0,0,0,0.14);
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+}
+
+#app {
+    box-sizing: border-box;
+    padding: 16px 18px 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+.header .title { font-weight: 800; font-size: 18px; }
+.header .meta { font-size: 12px; color: var(--muted); }
+
+#status {
+    display: inline-block;
+    background: var(--surface);
+    color: var(--muted);
+    border: 1px solid var(--border2);
+    padding: 8px 10px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    font-size: 13px;
+}
+#status.ok    { color: var(--ok); }
+#status.warn  { color: var(--warn); }
+#status.err   { color: var(--err); }
+
+.hint { color: var(--muted); font-size: 12px; margin-top: 6px; }
+
+.actions-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+}
+.actions-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+.pg-label { font-size: 12px; color: var(--muted); }
+
+.pg-input, .pg-select {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: rgb(249, 244, 244);
+    color: rgb(32, 29, 29);
+    outline: none;
+}
+.pg-select {
+    min-width: 170px;
+}
+
+.pg-btn {
+    background: #2f2f2f;
+    color: #fff;
+    border: 1px solid var(--border);
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+.pg-btn:hover { background: #3a3a3a; }
+.pg-btn.ghost {
+    background: #1b1b1b;
+    border-color: var(--border2);
+}
+.pg-btn.ghost:hover {
+    background: #242424;
+}
+
+.dropzone {
+    border: 1px dashed var(--border);
+    padding: 14px;
+    border-radius: 8px;
+    color: var(--muted);
+    margin-bottom: 10px;
+}
+
+.card {
+    background: #0b0d12;
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 12px 14px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+
+#output {
+    white-space: pre-wrap;
+    line-height: 1.5;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 12.5px;
+    color: #e2e6ee;
+    max-height: 50vh;
+    overflow: auto;
+}
+
+.result-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border2);
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+}
+.result-title { font-weight: 700; }
+.spacer { flex: 1; }
+
+.result-pre {
+    white-space: pre-wrap;
+    line-height: 1.6;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 13px;
+    color: #e2e6ee;
+    margin: 0;
+    max-height: 50vh;
+    overflow: auto;
+}
+
+/* === PATCH: Mirror inline UI "References" styling in Reader === */
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --pg-text: #0b1220;
+        --pg-muted: #4d5b78;
+        --pg-bg: #ffffff;
+        --pg-surface: #f4f6fa;
+        --pg-border: rgba(0,0,0,0.14);
+    }
+}
+
+.reader-root {
+    color: var(--pg-text);
+}
+
+.pg-section-title {
+    font-weight: 700;
+    margin: 8px 0 4px;
+}
+
+.pg-summary-bullets {
+    margin: 6px 0 10px;
+    padding-left: 18px;
+}
+
+.pg-references {
+    background: var(--pg-surface);
+    border: 1px solid var(--pg-border);
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 10px;
+}
+.pg-references ol {
+    margin: 6px 0 0 18px;
+}
+.pg-references a {
+    color: #9fd3ff;
+    text-decoration: none;
+}
+.pg-references a:hover {
+    text-decoration: underline;
+}
+.pg-ref-note {
+    color: var(--pg-muted);
+    font-size: 12px;
+    margin-left: 6px;
+}
+.pg-footer-tip {
+    margin-top: 10px;
+    font-size: 11px;
+    opacity: .85;
+}

@@ -1,0 +1,88 @@
+{
+  "manifest_version": 3,
+  "name": "Brivox",
+  "version": "1.0.0",
+  "description": "Brivox — AI tools for reading and writing with on-device first and cloud fallback.",
+  "author": "Brivox",
+  "action": {
+    "default_title": "Brivox",
+    "default_popup": "popup/popup.html"
+  },
+  "permissions": [
+    "storage",
+    "scripting",
+    "activeTab",
+    "contextMenus",
+    "tabs",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "content/content.js",
+        "content/toast.js"
+      ],
+      "css": [
+        "content/toolbar.css"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "commands": {
+    "summarize-selection": {
+      "suggested_key": { "default": "Alt+Shift+S" },
+      "description": "Summarize current selection (or confirm full page)"
+    },
+    "explain-selection": {
+      "suggested_key": { "default": "Alt+Shift+E" },
+      "description": "Explain current selection (or confirm full page)"
+    },
+    "rewrite-selection": {
+      "suggested_key": { "default": "Alt+Shift+R" },
+      "description": "Rewrite current selection (or confirm full page)"
+    },
+    "translate-selection": {
+      "suggested_key": { "default": "Alt+Shift+T" },
+      "description": "Translate current selection (or confirm full page)"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "content/pageBridge.js",
+        "pages/reader.html",
+        "pages/reader.js",
+        "pages/reader.css",
+        "pages/reading.html",
+        "pages/reading.js",
+        "pages/reading.css",
+        "pages/onboarding.html",
+        "pages/onboarding.js",
+        "pages/onboarding.css",
+        "libs/pdfjs/pdf.min.mjs",
+        "libs/pdfjs/pdf.worker.min.mjs",
+        "quiz/quiz.html"
+      ],
+      "matches": ["<all_urls>"],
+      "use_dynamic_url": true
+    }
+  ],
+
+  "options_ui": {
+    "page": "options/options.html"
+
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; worker-src 'self';"
+  }
+}

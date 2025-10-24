@@ -1,0 +1,54 @@
+services:
+    mongo:
+        container_name: genie_mongo
+        image: mongo:6.0
+        environment:
+            MONGO_INITDB_DATABASE: genie_project
+        volumes:
+            - mongo_data:/data/db
+        ports:
+            - 27017:27017
+        networks:
+            - genieService-network
+        restart: unless-stopped
+
+    mongo-express:
+        container_name: genie_mongo_express
+        image: mongo-express
+        environment:
+            ME_CONFIG_MONGODB_SERVER: mongo
+            ME_CONFIG_MONGODB_PORT: 27017
+            ME_CONFIG_OPTIONS_ENABLE_ADMIN: 'true'
+        ports:
+            - 8081:8081
+        networks:
+            - genieService-network
+        restart: unless-stopped
+    backend-node:
+        container_name: genie_backend_node
+        build:
+            context: ./backend-node
+            dockerfile: Dockerfile
+        environment:
+            - GEMINI_API_KEY=${GEMINI_API_KEY}
+            - GEMINI_API_URL=${GEMINI_API_URL}
+            - GOOGLE_CSE_API_KEY=${GOOGLE_CSE_API_KEY}
+            - GOOGLE_CSE_CX=${GOOGLE_CSE_CX}
+            - JWT_SECRET=${JWT_SECRET}
+            - MONGODB_URI=mongodb://mongo:27017/genie_project
+        ports:
+            - 8098:8098
+        depends_on:
+            - mongo
+        networks:
+            - genieService-network
+        restart: unless-stopped
+
+networks:
+  genieService-network:
+    driver: bridge
+
+
+volumes:
+    mongo_data:
+    mongo_express:

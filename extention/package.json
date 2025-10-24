@@ -1,0 +1,17 @@
+{
+  "name": "brivox-extension",
+  "version": "1.0.0",
+  "description": "Brivox — AI tools for reading and writing with on-device first and cloud fallback.",
+  "scripts": {
+    "start": "echo Load via chrome://extensions",
+    "build": "tsup src/background.ts src/content/content.ts src/content/pageBridge.ts src/content/toast.ts src/options/options.ts src/pages/onboarding.ts src/pages/reader.ts src/pages/reading.ts src/popup/popup.ts src/quiz/quiz.ts --format esm --out-dir dist --clean --minify",
+    "dev": "tsup --watch",
+    "lint": "eslint ."
+  },
+  "author": "Brivox",
+  "license": "MIT",
+  "devDependencies": {
+    "tsup": "^8.0.2",
+    "typescript": "^5.6.3"
+  }
+}

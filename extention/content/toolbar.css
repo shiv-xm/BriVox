@@ -1,0 +1,198 @@
+﻿.brivox-toolbar {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    background: rgb(239, 231, 231);
+    color: rgb(32, 29, 29);
+    padding: 6px 8px;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    z-index: 2147483647;
+    user-select: none;
+}
+
+.brivox-btn {
+    background: rgb(249, 244, 244);
+    color: rgb(32, 29, 29);
+    border: 1px solid rgba(0,0,0,0.12);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+}
+.brivox-btn:hover {
+    background: rgb(230, 220, 220);
+}
+
+.brivox-sep {
+    color: rgba(32, 29, 29, 0.45);
+    padding: 0 4px;
+}
+
+.brivox-toast {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    background: rgb(239, 231, 231);
+    color: rgb(32, 29, 29);
+    padding: 10px 14px;
+    border-radius: 8px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all .25s ease;
+    z-index: 2147483647;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.brivox-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.brivox-result-panel {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: min(520px, 50vw);
+    max-height: 50vh;
+    overflow: auto;
+    background: rgb(239, 231, 231);
+    color: rgb(32, 29, 29);
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 8px;
+    padding: 12px;
+    z-index: 2147483647;
+}
+.brivox-result-panel pre {
+    white-space: pre-wrap;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12px;
+    margin: 0 0 8px 0;
+}
+.brivox-result-panel button {
+    margin-right: 8px;
+}
+
+.brivox-translation-bubble {
+    background: rgb(239, 231, 231);
+    color: rgb(32, 29, 29);
+    padding: 8px 10px;
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+    max-width: 480px;
+    pointer-events: auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+
+/* Additions for categories bubble and suggestions panel */
+
+.brivox-categories-bubble {
+    background: rgb(239, 231, 231);
+    color: rgb(32, 29, 29);
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 10px;
+    padding: 10px 12px;
+    max-width: min(420px, 60vw);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+.brivox-categories-bubble .pgc-title {
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+.brivox-categories-bubble .pgc-row {
+    margin: 6px 0;
+}
+.brivox-categories-bubble .pgc-label {
+    color: rgba(32, 29, 29, 0.65);
+    margin-right: 6px;
+}
+.brivox-categories-bubble .pgc-chip {
+    display: inline-block;
+    background: rgb(249, 244, 244);
+    border: 1px solid rgba(0,0,0,0.12);
+    color: rgb(32, 29, 29);
+    padding: 2px 6px;
+    border-radius: 999px;
+    font-size: 11px;
+    margin: 0 4px 4px 0;
+}
+.brivox-categories-bubble .pgc-chip.subtle {
+    background: rgb(230, 220, 220);
+}
+.brivox-categories-bubble .pgc-summary {
+    margin-top: 8px;
+    color: rgb(32, 29, 29);
+    font-size: 12px;
+    line-height: 1.4;
+}
+.brivox-categories-bubble .pgc-actions {
+    margin-top: 10px;
+    text-align: right;
+}
+.brivox-categories-bubble .pgc-actions .pgc-close {
+    background: rgb(249, 244, 244);
+    color: rgb(32, 29, 29);
+    border: 1px solid rgba(0,0,0,0.18);
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+/* Suggestions side panel */
+/* Ensure suggestions panel has highest stacking context and looks visible */
+.brivox-suggestions-panel {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: min(420px, 50vw);
+    max-height: 60vh;
+    overflow: auto;
+    background: rgb(239, 231, 231);
+    color: rgb(32, 29, 29);
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 10px;
+    padding: 12px;
+    z-index: 2147483647; /* ensure on top */
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+.brivox-suggestions-panel .pgs-header {
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+.brivox-suggestions-panel .pgs-item {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.brivox-suggestions-panel .pgs-item:last-child {
+    border-bottom: none;
+}
+.brivox-suggestions-panel .pgs-item a {
+    color: #2563eb;
+    text-decoration: none;
+}
+.brivox-suggestions-panel .pgs-item a:hover {
+    text-decoration: underline;
+}
+.brivox-suggestions-panel .pgs-reason {
+    color: rgb(77, 91, 120);
+    font-size: 12px;
+    margin-top: 4px;
+}
+.brivox-suggestions-panel .pgs-actions {
+    text-align: right;
+    margin-top: 8px;
+}
+.brivox-suggestions-panel .pgs-close {
+    background: rgb(249, 244, 244);
+    color: rgb(32, 29, 29);
+    border: 1px solid rgba(0,0,0,0.18);
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+}
