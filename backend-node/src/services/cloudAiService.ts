@@ -1,7 +1,11 @@
 import axios from 'axios';
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'AIzaSyDpXyBvxKL0SxunXK9-36wjlnC56ekMTjk';
-const GEMINI_API_URL = process.env.GEMINI_API_URL || 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+const GEMINI_API_URL = process.env.GEMINI_API_URL;
+
+if (!GEMINI_API_KEY) {
+  console.error('GEMINI_API_KEY is not set in environment variables');
+}
 
 export async function callGeminiApi(prompt: string): Promise<string> {
   try {
